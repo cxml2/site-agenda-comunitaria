@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "express": "^4.17.1",
+    "hbs": "^4.0.6",
+    "moment": "^2.24.0",
+    "mongodb": "^3.3.3",
+    "mongoose": "^5.7.6",
+    "path": "^0.12.7",
+    "week-calendar": "^0.0.8"
+  }
+}
