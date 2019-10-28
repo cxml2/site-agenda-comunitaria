@@ -1,17 +1,50 @@
-const mongoose = require('mongoose');
+let client = require('mongodb').MongoClient;
 
-var Schema = mongoose.Schema;
+module.exports = class Usuario{
 
-var AtividadeSchema = new AtividadeSchema({
-    nome:{
-        type: String
-    },
-    data:{
-        type: Date
-    },
-    descriçao:{
-        type: String
+    static inserir(q){
+
+        return client.connect('mongodb://localhost:27017/Agenda',
+        {useNewUrlParser: true})
+        .then((client) => {
+            let db = client.db('Agenda');
+            return db.collection('atividades')
+                .insertOne({
+                nome: q.nome,
+                data: q.data,
+                descricao: q.descricao
+                })
+        }).catch((err) => {throw err})
+        
     }
-});
 
-module.exports = mongoose.model('Atividade', AtividadeSchema);
+    static deletar(q){
+
+        return client.connect('mongodb://localhost:27017/Agenda',
+        {useNewUrlParser: true})
+        .then((client) => {
+            let db = client.db('Agenda');
+            return db.collection('atividades')
+                .deleteOne({
+                nome: q.nome,
+                data: q.data,
+                descricao: q.descricao
+                })
+        }).catch((err) => {throw err})
+        
+    }
+
+    static verificar(q){
+        return client.connect('mongodb://localhost:27017/Agenda',
+        {useNewUrlParser: true})
+        .then((client) => {
+            let db = client.db('Agenda');
+            return db.collection('atividades')
+                .findOne({ $or: [ {nome: q.nome},
+                                  {data: q.data},
+                                  {descricao: q.descricao }
+                                ]})
+        }).catch((err) => {throw err})
+    }
+
+}
