@@ -17,9 +17,7 @@ app.get('/', function(req, res){
     res.render('Login');
 });
 
-app.get('/atividade', function(req, res){
-    res.render('Atividade');
-});
+app.get('/atividade', (req, res) => AtividadeController.buscar(req, res));
 
 app.get('/inserirAtividade', function(req, res){
     res.render('AdicionarAtividade');
@@ -27,7 +25,7 @@ app.get('/inserirAtividade', function(req, res){
 
 app.get('/home', function(req, res){
     IndexController.index(req, res);
-});
+}); 
 
 app.post('/salvarAtividade', (req,res) => AtividadeController.inserir(req,res));
 

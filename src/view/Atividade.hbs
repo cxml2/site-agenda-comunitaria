@@ -12,17 +12,19 @@
     <header>
         <h1>Atividade</h1>
     </header>
+    <h2>{{Erro}}</h2>
+    {{#each resultado}}
     <div>
         <div id = "container">
-            <h2>-{{nome}}-</h2>
-            <p id="pData">{{data}}223</p>
-            <p id="pDesc">{{descricao}}fsdgfdgfdgdfgfdg gfd gdfgfd gdf</p>
-        </div>
-        <button>EDITAR</button>
-
+            <h2>{{nome}}</h2>
+            <p id="pData">{{data}}</p>
+            <p id="pDesc">{{descricao}}</p>
+        </div>    
+        {{!-- <button>EDITAR</button> --}}
     </div>
+    {{/each}}
     
-</body>
+</body> 
 </html>
 
 <style>
@@ -65,10 +67,12 @@
         margin-bottom: 20px;
     }
 
-    button {
+    {{!-- button {
         border-radius: 10px;
+        font-size: 18px;
         background-color: white;
         font-family: 'Comfortaa';
-    }
+        margin-bottom: 20px;
+    } --}}
 
 </style>

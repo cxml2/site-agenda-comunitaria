@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const Atividade = require("../model/Atividade");
 const valid = require('validator');
+let client = require('mongodb').MongoClient;
+
 
 module.exports = class AtividadeController {
 
@@ -15,12 +17,28 @@ module.exports = class AtividadeController {
             .then(ativ => {
                 if (!ativ) {
                     Atividade.inserir(req.body);
-                    req.session.login = nome
-                    res.redirect('/' + nome)
+                    //req.session.login = nome
+                    res.redirect('/' /*+ nome*/)
                 } else {
                     res.render('Principal', { Erro: 'Atividade já cadastrada' })
                 }
             })
         }
     }
+
+    static buscar(req, res) {
+        console.log(req.query + "aa");
+        Atividade.buscar(req.query)
+        .then(ativ => {
+            if(!ativ) {
+                res.render('Atividade', {Erro: 'Atividade não encontrada'});
+            } else {
+                //console.log(ativ);
+                res.render('Atividade', {resultado: ativ})
+            }
+        })
+        
+    }
+
+
 }
