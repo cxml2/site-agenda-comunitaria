@@ -1,6 +1,15 @@
 let client = require('mongodb').MongoClient;
 
-module.exports = class Usuario{
+module.exports = class Atividade{
+
+    static conectar(){
+        client.connect('mongodb://localhost:27017/Agenda',
+        {useNewUrlParser: true})
+        .then((client) => {
+            let db = client.db('Agenda');
+            return db.collection('atividades')
+        }).catch((err) => {throw err})
+    }
 
     static inserir(q){
 
@@ -18,21 +27,6 @@ module.exports = class Usuario{
         
     }
 
-    static deletar(q){
-
-        return client.connect('mongodb://localhost:27017/Agenda',
-        {useNewUrlParser: true})
-        .then((client) => {
-            let db = client.db('Agenda');
-            return db.collection('atividades')
-                .deleteOne({
-                nome: q.nome,
-                data: q.data,
-                descricao: q.descricao
-                })
-        }).catch((err) => {throw err})
-        
-    }
 
     static verificar(q){
         return client.connect('mongodb://localhost:27017/Agenda',
@@ -56,6 +50,16 @@ module.exports = class Usuario{
                     .find(  {nome : new RegExp(`^${q.nomeBusca}`, 'i')                                       
                 }).toArray();
                 
+            }).catch((err) => { throw err })
+    }
+
+    static listar(){
+        return client.connect('mongodb://localhost:27017/Agenda',
+            { useNewUrlParser: true })
+            .then((client) => {
+                let db = client.db('Agenda');
+                return db.collection('atividades')
+                .find({});
             }).catch((err) => { throw err })
     }
 }

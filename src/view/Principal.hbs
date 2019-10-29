@@ -13,6 +13,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    
     <script>
         function popup(){ 
             $('.gray-off').show();
@@ -36,28 +37,30 @@
 <body>
     <div class="gray-off">
         <div class="popup">
-            <form action="./salvarAtividade" method="POST" accept-charset="utf-8">
-            <h2 id="erro">{{ErroAtiv}}</h2>
+                <form action="/salvarAtividade" method="POST">
                 <div class="form-group">
                     <label>Nome</label>
-                    <input type="text" class="form-control" name="nome">
+                    <input type="text"  class="form-control"  name="nome">
                 </div>
-                <div class="form-group">
-                    <label>Data</label>
-                    <input type="datetime-local" class="form-control" name="data">
+
+               
+                     <div class="form-group">
+                        <label>Data</label>
+                        <input type="datetime-local" class="form-control"  name="data">
+                
                 </div>
-                <div class="form-group">
+                  <div class="form-group">
                     <label>Descrição</label>
                     <input type="text"  class="form-control"  name="descricao">
-                </div>
-                <input type="submit" class="btn btn-primary mx-auto" value="INSERIR">
-            </form>
+                    </div>
+        <input type="submit" class="btn btn-primary mx-auto" value="INSERIR">
+    </form>
         </div>
     </div>
     <header>
         <h1>Agenda Comunitária</h1>
     </header>
-    <form action = "/atividade" method="GET">
+     <form action = "/atividade" method="GET">
         <div class="container">
             <div class="d-flex justify-content-center h-100">
                 <div class="searchbar">
@@ -67,31 +70,73 @@
             </div>
         </div>
     </form>
-    
+
     <table class="table table-bordered table-dark">
         <thead>
             <tr>
                 <th scope="col"><button onclick="popup()">ADICIONAR</button></th>
+                <th scope="col">Domingo</th>
                 <th scope="col">Segunda</th>
                 <th scope="col">Terça</th>
                 <th scope="col">Quarta</th>
                 <th scope="col">Quinta</th>
                 <th scope="col">Sexta</th>
                 <th scope="col">Sábado</th>
-                <th scope="col">Domingo</th>
+                
             </tr>
         </thead>
         <tbody>
             {{#semana}}
             <tr>
                 <td id="primary" class="table-dark">  {{@key}}:00</td>
-                <td class="bg-primary">{{ this.[0] }}</td>
-                <td class="bg-success">{{ this.[1] }}</td>
-                <td class="bg-warning">{{ this.[2] }}</td>
-                <td class="bg-danger"> {{ this.[3] }}</td>
-                <td class="bg-info">   {{ this.[4] }}</td>
-                <td class="bg-primary">{{ this.[5] }}</td>
-                <td class="bg-success">{{ this.[6] }}</td>
+                <td class="bg-primary">
+                    <ul>
+                    {{#each this.[0] as |item|}}
+                        <li><a href="/atividade/view/{{item.id}}">{{item.nome}}</a></li>
+                    {{/each}}
+                    <a href="/atividades/domingo/{{@key}}">...</a>     
+                        </li>
+                    </ul>
+                     
+                      
+                </td>
+                <td class="bg-success">
+                   {{#each this.[1] as |item|}}
+                        <li><a href="/atividade/view/{{item.id}}">{{item.nome}}</a></li>
+                    {{/each}}
+                  <a href="/atividades/segunda/{{@key}}">...</a>  
+                </td>
+                <td class="bg-warning">
+                     {{#each this.[2] as |item|}}
+                        <li><a href="/atividade/view/{{item.id}}">{{item.nome}}</a></li>
+                    {{/each}}
+                   <a href="/atividades/terca/{{@key}}">...</a>  
+                </td>
+                <td class="bg-danger">
+                     {{#each this.[3] as |item|}}
+                        <li><a href="/atividade/view/{{item.id}}">{{item.nome}}</a></li>
+                    {{/each}}
+                    <a href="/atividades/quarta/{{@key}}">...</a>  
+                    
+                     </td>
+                <td class="bg-info">  
+                     {{#each this.[4] as |item|}}
+                        <li><a href="/atividade/view/{{item.id}}">{{item.nome}}</a></li>
+                    {{/each}}
+                    <a href="/atividades/quinta/{{@key}}">...</a>
+                </td>
+                <td class="bg-primary">
+                     {{#each this.[5] as |item|}}
+                        <li><a href="/atividade/view/{{item.id}}">{{item.nome}}</a></li>
+                    {{/each}}
+                    <a href="/atividades/sexta/{{@key}}">...</a>
+                </td>
+                <td class="bg-success">
+                     {{#each this.[6] as |item|}}
+                        <li><a href="/atividade/view/{{item.id}}">{{item.nome}}</a></li>
+                    {{/each}}
+                    <a href="/atividades/sabado/{{@key}}">...</a>
+                </td>
             </tr>
              {{/semana}}
         </tbody>
@@ -109,23 +154,19 @@
         margin: 0px;
         padding: 0px;
     }
-
     header {
         background-color: #2d333d;
         text-align: center;
     }
-
     td {
         width: 200px;
         height: 60px;
         overflow: auto;
         font-family: 'Comfortaa', cursive;
     }
-
     tr {
         font-family: 'Comfortaa', cursive;
     }
-
     td:hover {
         color: black;
         background: #ccc;
@@ -153,11 +194,9 @@
     {
         padding: 5px;
     }
-
     button {
         border-radius: 15px;
     }
-
     body,html{
     height: 100%;
     width: 100%;
@@ -165,7 +204,6 @@
     padding: 0;
     background: #2d333d !important;
     }
-
     .searchbar{
     margin-bottom: auto;
     margin-top: auto;
@@ -174,7 +212,6 @@
     border-radius: 30px;
     padding: 10px;
     }
-
     .search_input{
     color: #2d333d;
     border: 0;
@@ -185,19 +222,16 @@
     line-height: 40px;
     transition: width 0.4s linear;
     }
-
     .searchbar:hover > .search_input{
     padding: 0 10px;
     width: 450px;
     caret-color:red;
     transition: width 0.4s linear;
     }
-
     .searchbar:hover > .search_icon{
     background: white;
     color: #e74c3c;
     }
-
     .search_icon{
     height: 40px;
     width: 40px;
@@ -208,18 +242,20 @@
     border-radius: 50%;
     color: #2d333d;
     }
-
     .container{
         display:flex;
         margin:0;
         align-content: flex-start;
         margin-bottom: 20px;
     }
-
     #erro {
         justify-content: center;    
         color: #e74c3c;
         font-family: 'Courier New';
         font-size: 18px;
+    }
+
+    a:visited, a:link {
+        color: black;
     }
 </style>

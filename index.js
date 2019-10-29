@@ -14,15 +14,11 @@ app.use(bodyParser.urlencoded({extended : false}));
 app.use(bodyParser.json());
 
 
-app.get('/', function(req, res){
-    res.render('Login');
-});
+app.get('/', (req, res) => res.render('Login'));
+
+app.get('/home', (req, res) => IndexController.index(req, res)); 
 
 app.get('/atividade', (req, res) => AtividadeController.buscar(req, res));
-
-app.get('/home', function(req, res){
-    IndexController.index(req, res);
-}); 
 
 app.post('/salvarAtividade', (req,res) => AtividadeController.inserir(req,res));
 
@@ -30,8 +26,8 @@ app.post('/cadastrou', (req, res) => UsuarioController.cadastro(req, res))
 
 app.get('/logou', (req, res) => UsuarioController.login(req, res))
 
-// app.get('/agenda', function(req, res){
-//     res.render('Atividade');
-// });
+app.get('/atividade/view/:id', (req, res) => AtividadeController.view(req, res));
+
+app.get('/usuario/view/:id', (req, res) => UsuarioController.view(req, res));
 
 app.listen(3000);
