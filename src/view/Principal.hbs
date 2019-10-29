@@ -60,7 +60,8 @@
     <header>
         <h1>Agenda Comunitária</h1>
     </header>
-     <form action = "/atividade" method="GET">
+    <div id="barra">
+        <form action = "/atividade" method="GET">
         <div class="container">
             <div class="d-flex justify-content-center h-100">
                 <div class="searchbar">
@@ -69,7 +70,13 @@
                 </div>
             </div>
         </div>
-    </form>
+        </form>
+        <div id="bt1">
+            <a href="/sair">
+                <button>LOGOUT</button>
+            </a>
+        </div>
+    </div>
 
     <table class="table table-bordered table-dark">
         <thead>
@@ -92,7 +99,7 @@
                 <td class="bg-primary">
                     <ul>
                     {{#each this.[0] as |item|}}
-                        <li><a href="/atividade/view/{{item.id}}">{{item.nome}}</a></li>
+                        <li><a href="/atividade/view/{{item._id}}">{{item.nome}}</a></li>
                     {{/each}}
                     <a href="/atividades/domingo/{{@key}}">...</a>     
                         </li>
@@ -102,38 +109,38 @@
                 </td>
                 <td class="bg-success">
                    {{#each this.[1] as |item|}}
-                        <li><a href="/atividade/view/{{item.id}}">{{item.nome}}</a></li>
+                        <li><a href="/atividade/view/{{item._id}}">{{item.nome}}</a></li>
                     {{/each}}
                   <a href="/atividades/segunda/{{@key}}">...</a>  
                 </td>
                 <td class="bg-warning">
                      {{#each this.[2] as |item|}}
-                        <li><a href="/atividade/view/{{item.id}}">{{item.nome}}</a></li>
+                        <li><a href="/atividade/view/{{item._id}}">{{item.nome}}</a></li>
                     {{/each}}
                    <a href="/atividades/terca/{{@key}}">...</a>  
                 </td>
                 <td class="bg-danger">
                      {{#each this.[3] as |item|}}
-                        <li><a href="/atividade/view/{{item.id}}">{{item.nome}}</a></li>
+                        <li><a href="/atividade/view/{{item._id}}">{{item.nome}}</a></li>
                     {{/each}}
                     <a href="/atividades/quarta/{{@key}}">...</a>  
                     
                      </td>
                 <td class="bg-info">  
                      {{#each this.[4] as |item|}}
-                        <li><a href="/atividade/view/{{item.id}}">{{item.nome}}</a></li>
+                        <li><a href="/atividade/view/{{item._id}}">{{item.nome}}</a></li>
                     {{/each}}
                     <a href="/atividades/quinta/{{@key}}">...</a>
                 </td>
                 <td class="bg-primary">
                      {{#each this.[5] as |item|}}
-                        <li><a href="/atividade/view/{{item.id}}">{{item.nome}}</a></li>
+                        <li><a href="/atividade/view/{{item._id}}">{{item.nome}}</a></li>
                     {{/each}}
                     <a href="/atividades/sexta/{{@key}}">...</a>
                 </td>
                 <td class="bg-success">
                      {{#each this.[6] as |item|}}
-                        <li><a href="/atividade/view/{{item.id}}">{{item.nome}}</a></li>
+                        <li><a href="/atividade/view/{{item._id}}">{{item.nome}}</a></li>
                     {{/each}}
                     <a href="/atividades/sabado/{{@key}}">...</a>
                 </td>
@@ -272,6 +279,16 @@
     ::-webkit-scrollbar-thumb {
     background:rgb(22, 154, 241);
     border-radius: 10px;
+    }
+
+    #barra {
+        display: flex;
+        flex-direction: row;
+    }
+
+    #bt1{
+        display: flex;
+        justify-content: flex-end;
     }
 
 </style>

@@ -18,10 +18,10 @@ module.exports = class UsuarioController {
         else if (senha === senha1) {
             Usuario.verificar(req.body)
                 .then(user => {
-                    if (!user) {
+                    if (!user ) {
                         Usuario.inserir(req.body);
-                        //req.session.login = nome
-                        res.redirect('/home' /*+ nome*/)
+                        req.session.login = login
+                        res.redirect('/home/' + login)
                     } else {
                         res.render('Login', { ErroCadastro: 'Usuário já cadastrado' })
                     }
@@ -39,10 +39,16 @@ module.exports = class UsuarioController {
                 if (valid.isEmpty(login, { ignore_whitespace: true }) || valid.isEmpty(senha,{ ignore_whitespace: true })){
                     res.render('Login', { ErroLogin: 'Campo Vazio' })
                 } else if (senha === user.senha) {
-                    //req.session.login = user.nome
-                    res.redirect('/home' /*+ user.nome*/);
+                    req.session.login = login;
+                    console.log(req.session.login)
+                    res.redirect('/home/' + login);
                 } else
                     res.render('Login', { ErroLogin: 'Senha errada' })
             })
     }
-}
+
+    static sair(req, res) {
+        req.session.destroy();
+        return res.redirect('/');
+    }
+}  

@@ -28,6 +28,7 @@ module.exports = class Atividade{
     }
 
 
+
     static verificar(q){
         return client.connect('mongodb://localhost:27017/Agenda',
         {useNewUrlParser: true})
@@ -50,6 +51,20 @@ module.exports = class Atividade{
                     .find(  {nome : new RegExp(`^${q.nomeBusca}`, 'i')                                       
                 }).toArray();
                 
+            }).catch((err) => { throw err })
+    }
+
+    static buscarId(q){
+        return client.connect('mongodb://localhost:27017/Agenda',
+            { useNewUrlParser: true })
+            .then((client) => {
+                let db = client.db('Agenda');
+                console.log(q);
+                return db.collection('atividades')
+                    .findOne( {_id : q}).then((atividade) => {
+                        console.log(atividade);
+                    });
+                                
             }).catch((err) => { throw err })
     }
 

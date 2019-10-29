@@ -15,12 +15,12 @@
     <div>
         <h2 id="erro">{{ErroAtiv}}</h2>       
     </div>
-    {{#each resultado as |item|}}
+    {{#each resultado }}
     <div>
         <div id = "container">
-            <h2>{{item.nome}}</h2>
-            <p id="pData">{{item.data}}</p>
-            <p id="pDesc">{{item.descricao}}</p>
+            <h2>{{nome}}</h2>
+            <p id="pData">{{data}}</p>
+            <p id="pDesc">{{descricao}}</p>
         </div>    
         {{!-- <button>EDITAR</button> --}}
     </div>
