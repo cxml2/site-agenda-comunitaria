@@ -28,6 +28,4 @@ app.get('/logou', (req, res) => UsuarioController.login(req, res))
 
 app.get('/atividade/view/:id', (req, res) => AtividadeController.view(req, res));
 
-app.get('/usuario/view/:id', (req, res) => UsuarioController.view(req, res));
-
 app.listen(3000);
