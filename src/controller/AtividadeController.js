@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Atividade = require("../model/Atividade");
+const valid = require('validator');
 
 module.exports = class AtividadeController {
 
@@ -8,7 +9,7 @@ module.exports = class AtividadeController {
 
         if (valid.isEmpty(nome, { ignore_whitespace: true }) || valid.isEmpty(data, { ignore_whitespace: true }) ||
             valid.isEmpty(descricao, { ignore_whitespace: true })) {
-            alert("Nenhum campo pode estar vazio");
+            window.alert("Nenhum campo pode estar vazio");
         }else{
             Atividade.verificar(req.body)
             .then(ativ => {

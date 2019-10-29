@@ -19,16 +19,17 @@ module.exports = class Usuario {
 
     }
 
-    static logar(login) {
+    static logar(login, senha) {
         return client.connect('mongodb://localhost:27017/Agenda',
             { useNewUrlParser: true })
             .then((client) => {
                 let db = client.db('Agenda');
                 return db.collection('usuarios')
-                    .findOne({
-                        login: login,
-                        senha: senha
-                    })
+                    .findOne({ $or: [
+                        {login : login},
+                        {senha : senha}
+                    ]                        
+                })
             }).catch((err) => { throw err })
     }
 

@@ -14,7 +14,7 @@
 
     <h1>Login</h1>
 
-    <h2>{{Erro}}</h2>
+    <h2>{{ErroLogin}}</h2>
 
     <form action='./logou' method='get' accept-charset="utf-8">
         <label form='mensagem'>Login</label>
@@ -26,9 +26,9 @@
 
     <h1>Cadastro</h1>
 
-    <h2>{{Erro}}</h2>
+    <h2>{{ErroCadastro}}</h2>
 
-    <form action='./cadastro' method='POST' accept-charset="utf-8">
+    <form action='./cadastrou' method='POST' accept-charset="utf-8">
         <label form='mensagem'>Nome</label>
         <input type="text" name="nome" value="{{nome}}" />
         <label form='mensagem'>Login</label>
@@ -38,7 +38,7 @@
         <label form='mensagem'>Senha</label>
         <input type="password" name="senha" value="" />
         <label form='mensagem'>Confirmar Senha</label>
-        <input type="password" name="senha2" value="" />
+        <input type="password" name="senha1" value="" />
         <input type="submit" name="cadastrar" value="Cadastrar" />
     </form>
 
