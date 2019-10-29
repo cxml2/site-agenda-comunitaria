@@ -1,15 +1,15 @@
-const Atividade = require("../model/Atividade");
+let Atividade = require("../model/Atividade");
 const valid = require('validator');
 
 
 module.exports = class AtividadeController {
 
+
     static inserir(req, res) {
-        const { nome, data, descricao } = req.body;
-        console.log(req.body);
-        if (valid.isEmpty(nome, { ignore_whitespace: true }) || valid.isEmpty(data, { ignore_whitespace: true }) ||
-            valid.isEmpty(descricao, { ignore_whitespace: true })) {
-            console.log(nome);
+        const {nome, data, descricao} = req.body;
+      
+        if (valid.isEmpty(nome, { useUnifiedTopology: true }) || valid.isEmpty(data, { useUnifiedTopology: true }) ||
+            valid.isEmpty(descricao, { useUnifiedTopology: true })) {
             res.render('Principal', { ErroAtiv: 'Campo não pode ser vazio' })
         } 
         else{
@@ -18,7 +18,7 @@ module.exports = class AtividadeController {
                 if (!ativ) {
                     Atividade.inserir(req.body);
                     //req.session.login = nome
-                    res.redirect('/' /*+ nome*/)
+                    res.redirect('/home' /*+ nome*/)
                 } else {
                     res.render('Principal', { ErroAtiv: 'Atividade já cadastrada' })
                 }

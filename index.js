@@ -10,6 +10,7 @@ app.set('views', path.join(__dirname, 'src/view'));
 app.set('view engine', 'hbs');
 
 app.use(bodyParser.urlencoded({extended : false}));
+
 app.use(bodyParser.json());
 
 
