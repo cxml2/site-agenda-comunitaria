@@ -12,7 +12,9 @@
     <header>
         <h1>Atividade</h1>
     </header>
-    <h2>{{Erro}}</h2>
+    <div>
+        <h2 id="erro">{{ErroAtiv}}</h2>       
+    </div>
     {{#each resultado}}
     <div>
         <div id = "container">
@@ -73,6 +75,12 @@
         background-color: white;
         font-family: 'Comfortaa';
         margin-bottom: 20px;
-    } --}}
+    }  --}}
 
+    #erro {
+        justify-content: center;    
+        color: #e74c3c;
+        font-family: 'Courier New';
+        font-size: 18px;
+    }
 </style>

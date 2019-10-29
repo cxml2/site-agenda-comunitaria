@@ -1,18 +1,18 @@
-const mongoose = require("mongoose");
 const Atividade = require("../model/Atividade");
 const valid = require('validator');
-let client = require('mongodb').MongoClient;
 
 
 module.exports = class AtividadeController {
 
     static inserir(req, res) {
         const { nome, data, descricao } = req.body;
-
+        console.log(req.body);
         if (valid.isEmpty(nome, { ignore_whitespace: true }) || valid.isEmpty(data, { ignore_whitespace: true }) ||
             valid.isEmpty(descricao, { ignore_whitespace: true })) {
-            window.alert("Nenhum campo pode estar vazio");
-        }else{
+            console.log(nome);
+            res.render('Principal', { ErroAtiv: 'Campo não pode ser vazio' })
+        } 
+        else{
             Atividade.verificar(req.body)
             .then(ativ => {
                 if (!ativ) {
@@ -20,21 +20,19 @@ module.exports = class AtividadeController {
                     //req.session.login = nome
                     res.redirect('/' /*+ nome*/)
                 } else {
-                    res.render('Principal', { Erro: 'Atividade já cadastrada' })
+                    res.render('Principal', { ErroAtiv: 'Atividade já cadastrada' })
                 }
             })
         }
     }
 
     static buscar(req, res) {
-        console.log(req.query + "aa");
         Atividade.buscar(req.query)
         .then(ativ => {
-            if(!ativ) {
-                res.render('Atividade', {Erro: 'Atividade não encontrada'});
+            if(valid.isEmpty(ativ.toString())) {
+                res.render('Atividade', {ErroAtiv: 'Atividade não encontrada'});
             } else {
-                //console.log(ativ);
-                res.render('Atividade', {resultado: ativ})
+                res.render('Atividade', {resultado: ativ})            
             }
         })
         

@@ -9,11 +9,11 @@ module.exports = class UsuarioController {
         if (valid.isEmpty(nome, { ignore_whitespace: true }) || valid.isEmpty(email, { ignore_whitespace: true }) ||
             valid.isEmpty(login, { ignore_whitespace: true }) || valid.isEmpty(senha, { ignore_whitespace: true }) ||
             valid.isEmpty(senha1, { ignore_whitespace: true })) {
-            res.render('Login', { ErroCadastro: 'Nenhum campo pode estar vazio'})
+            res.render('Login', { ErroCadastro: 'ERRO: Nenhum campo pode estar vazio'})
         } else if (!valid.isEmail(email)) {
-            res.render('Login', { ErroCadastro: 'E-mail invalido' })
+            res.render('Login', { ErroCadastro: 'ERRO: E-mail invalido' })
         } else if (senha !== senha1) {
-            res.render('Login', { ErroCadastro: 'E-mail invalido' })
+            res.render('Login', { ErroCadastro: 'ERRO: Senhas incompatíveis' })
         } 
         else if (senha === senha1) {
             Usuario.verificar(req.body)
@@ -37,12 +37,12 @@ module.exports = class UsuarioController {
         Usuario.logar(login, senha)
             .then(user => {
                 if (valid.isEmpty(login, { ignore_whitespace: true }) || valid.isEmpty(senha,{ ignore_whitespace: true })){
-                    res.render('Login', { MensagemErroLogin: 'Campo Vazio' })
+                    res.render('Login', { ErroLogin: 'Campo Vazio' })
                 } else if (senha === user.senha) {
                     //req.session.login = user.nome
                     res.redirect('/home' /*+ user.nome*/);
                 } else
-                    res.render('Login', { MensagemErroLogin: 'Senha errada' })
+                    res.render('Login', { ErroLogin: 'Senha errada' })
             })
     }
 }

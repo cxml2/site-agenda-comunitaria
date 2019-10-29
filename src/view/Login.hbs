@@ -6,44 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <title>Login</title>
-</head>
-
-<body>
-
-    <h1>Login</h1>
-
-    <h2>{{ErroLogin}}</h2>
-
-    <form action='./logou' method='get' accept-charset="utf-8">
-        <label form='mensagem'>Login</label>
-        <input type="text" name="login" value="" />
-        <label form='mensagem'>Senha</label>
-        <input type="password" name="senha" value="" />
-        <input type="submit" name="logar" value="LOGAR" />
-    </form>
-
-    <h1>Cadastro</h1>
-
-    <h2>{{ErroCadastro}}</h2>
-
-    <form action='./cadastrou' method='POST' accept-charset="utf-8">
-        <label form='mensagem'>Nome</label>
-        <input type="text" name="nome" value="{{nome}}" />
-        <label form='mensagem'>Login</label>
-        <input type="text" name="login" value="{{login}}" />
-        <label form='mensagem'>Email</label>
-        <input type="text" name="email" value="{{email}}" />
-        <label form='mensagem'>Senha</label>
-        <input type="password" name="senha" value="" />
-        <label form='mensagem'>Confirmar Senha</label>
-        <input type="password" name="senha1" value="" />
-        <input type="submit" name="cadastrar" value="Cadastrar" />
-    </form>
-
-    {{!-- Bootstrap --}}
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa:400,700&display=swap" rel="stylesheet">
+     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
@@ -52,7 +16,118 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+    
+    <title>Login</title>
+</head>
+
+<body>
+    <header>
+        <h1>Agenda Comunitária</h1>
+    </header>
+
+    <div id="div">
+        <div id="container">
+            <h2>Login</h2>
+
+            <h3>{{ErroLogin}}</h3>
+
+            <form action='./logou' method='get' accept-charset="utf-8">
+                <label form='mensagem'>Login</label>
+                <input type="text" name="login" value="" />
+                <label form='mensagem'>Senha</label>
+                <input type="password" name="senha" value="" />
+                <input id="button" type="submit" name="logar" value="LOGAR" />
+            </form>
+
+            <h2>Cadastro</h2>
+
+            <h3>{{ErroCadastro}}</h3>
+
+            <form action='./cadastrou' method='POST' accept-charset="utf-8">
+                <label form='mensagem'>Nome</label>
+                <input type="text" name="nome" value="{{nome}}" />
+                <label form='mensagem'>Login</label>
+                <input type="text" name="login" value="{{login}}" />
+                <label form='mensagem'>Email</label>
+                <input type="text" name="email" value="{{email}}" />
+                <label form='mensagem'>Senha</label>
+                <input type="password" name="senha" value="" />
+                <label form='mensagem'>Confirmar Senha</label>
+                <input type="password" name="senha1" value="" />
+                <input id="button" type="submit" name="cadastrar" value="CADASTRAR" />
+            </form>
+        </div>
+    </div>
 
 </body>
 
 </html>
+
+<style>
+    h1 {
+        font-family: 'Comfortaa';   
+        font-size: 40px;
+        color: white;
+    }
+
+    h2 {
+        font-family: 'Comfortaa';   
+        font-size: 25px;
+        margin-bottom: 10px;
+        margin-top: 15px;
+        color: white;
+    }
+
+    h3 {
+        font-family:'Courier New';
+        font-size: 14px;
+        color:crimson;
+    }
+
+    header {
+        background-color: #2d333d;
+        text-align: center;
+    }
+
+    #button {
+        font-family: 'Comfortaa';  
+        border-radius: 10px;
+        margin-top:20px;
+        margin-bottom:20px;
+        background-color: #e74c3c;
+        color: white;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        width: 500px;
+    }
+
+    #container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;  
+        background-color: #2d333d;
+        width: 600px;  
+        border-radius: 20px;
+    }
+
+    #div {
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+    }
+
+    label, input {
+        color: white;
+        font-family: 'Comfortaa';
+        background-color: #2d333d;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        margin-top: 10px;
+        margin-bottom: 0px;
+
+    }
+</style>

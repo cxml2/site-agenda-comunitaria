@@ -19,10 +19,6 @@ app.get('/', function(req, res){
 
 app.get('/atividade', (req, res) => AtividadeController.buscar(req, res));
 
-app.get('/inserirAtividade', function(req, res){
-    res.render('AdicionarAtividade');
-});
-
 app.get('/home', function(req, res){
     IndexController.index(req, res);
 }); 

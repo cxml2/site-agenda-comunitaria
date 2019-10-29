@@ -35,25 +35,23 @@
 
 <body>
     <div class="gray-off">
+        <h2>{{ErroAtiv}}</h2>
         <div class="popup">
-                <form action="/atividade/save" method="POST">
+            <form action="/salvarAtividade" method="POST">
                 <div class="form-group">
                     <label>Nome</label>
                     <input type="text"  class="form-control"  name="title">
                 </div>
-
-               
-                     <div class="form-group">
-                        <label>Data</label>
-                        <input type="datetime-local" class="form-control"  name="timeOfActivity">
-                
+                <div class="form-group">
+                    <label>Data</label>
+                    <input type="datetime-local" class="form-control"  name="timeOfActivity">
                 </div>
-                  <div class="form-group">
+                <div class="form-group">
                     <label>Descrição</label>
                     <input type="text"  class="form-control"  name="description">
-                    </div>
-        <input type="submit" class="btn btn-primary mx-auto" value="INSERIR">
-    </form>
+                </div>
+                <input type="submit" class="btn btn-primary mx-auto" value="INSERIR">
+            </form>
         </div>
     </div>
     <header>
